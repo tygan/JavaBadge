@@ -6,12 +6,14 @@ package org.familysearch.test;
  */
 public class ParamPassingExample {
 
-    public static void changeValues(int x, String string, Example example){
+    public static void changeValues(int x, String string, Example example, final Example finalExample){
         x = 2;
         string = "Second String";
         string = "Second String";
         example.name = "Charles the Second";
-        System.out.println("\nInside-method values:\n  x = " + x + "\n  string = " + string + "\n  example.name = " + example.name);
+        finalExample.name = "Second Final Example";
+        System.out.println("\nInside-method values:\n  x = " + x + "\n  string = " + string + "\n  example.name = " + example.name+
+                "\n  finalExample.name = "+finalExample.name);
     }
 
     public static void main(String[] args) {
@@ -21,10 +23,14 @@ public class ParamPassingExample {
         String string = "First String";
         Example example = new Example();
         example.name = "Charles the First";
+        Example finalExample = new Example();
+        finalExample.name = "First Final Example";
 
-        System.out.println("Original values:\n  x = "+x+"\n  string = "+string+"\n  example.name = "+example.name);
-        ppexample.changeValues(x, string, example);
-        System.out.println("\nAfter-method values:\n  x = " + x + "\n  string = " + string + "\n  example.name = " + example.name);
+         System.out.println("Original values:\n  x = "+x+"\n  string = "+string+"\n  example.name = "+example.name+
+                "\n  finalExample.name = "+finalExample.name);
+        ppexample.changeValues(x, string, example, finalExample);
+        System.out.println("\nAfter-method values:\n  x = " + x + "\n  string = " + string + "\n  example.name = " + example.name+
+                "\n  finalExample.name = "+finalExample.name);
     }
 
     static class Example{
